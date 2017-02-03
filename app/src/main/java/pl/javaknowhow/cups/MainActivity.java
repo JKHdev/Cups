@@ -3,6 +3,7 @@ package pl.javaknowhow.cups;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ImageView left, middle, right;
+    Button new_game;
     List<Integer> cards;
 
     @Override
@@ -24,12 +26,26 @@ public class MainActivity extends AppCompatActivity {
         middle = (ImageView) findViewById(R.id.middle);
         right = (ImageView) findViewById(R.id.right);
 
+        new_game = (Button) findViewById(R.id.new_game);
+
+
         cards = new ArrayList<>();
         cards.add(107); // six
         cards.add(207); // nine
         cards.add(407); // A
 
-        Collections.shuffle(cards);
+
+
+        new_game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Collections.shuffle(cards);
+
+                left.setImageResource(R.drawable.back);
+                middle.setImageResource(R.drawable.back);
+                right.setImageResource(R.drawable.back);
+            }
+        });
 
         left.setOnClickListener(new View.OnClickListener() {
             @Override
