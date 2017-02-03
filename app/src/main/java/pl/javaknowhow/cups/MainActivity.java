@@ -3,6 +3,8 @@ package pl.javaknowhow.cups;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -39,11 +41,20 @@ public class MainActivity extends AppCompatActivity {
         new_game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Collections.shuffle(cards);
 
                 left.setImageResource(R.drawable.back);
                 middle.setImageResource(R.drawable.back);
                 right.setImageResource(R.drawable.back);
+
+                Animation anim_left = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.left);
+                Animation anim_middle = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.middle);
+                Animation anim_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.right);
+
+                left.startAnimation(anim_left);
+                middle.startAnimation(anim_middle);
+                right.startAnimation(anim_right);
             }
         });
 
